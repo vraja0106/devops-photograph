@@ -32,9 +32,14 @@ class DevopsPhotographApplicationTests {
 		if( items != null && items.size() > 0 ) {
 		    nextId = items.get(items.size() - 1).getId() +1;
 		}
-		pr.save(photo);
+		Photograph photo1 = pr.save(photo);
 		
-		Assert.isTrue(nextId == pr.save(photo).getId(), "Save");
+		if( items != null && items.size() > 0 ) {
+		    Assert.isTrue(nextId == photo1.getId(), "Save");
+		} else {
+		    Assert.isTrue(photo1.getId() > 0, "Save");
+		}
+
 	}
 
 }
