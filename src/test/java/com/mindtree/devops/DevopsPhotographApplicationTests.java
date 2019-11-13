@@ -28,7 +28,10 @@ class DevopsPhotographApplicationTests {
 		photo.setThumbnailFile("Thumbnail File");
 		
 		List<Photograph> items = pr.findAll();
-		int nextId = items.get(items.size() - 1).getId() +1;
+		int nextId = 1;
+		if( items != null && items.size() > 0 ) {
+		    nextId = items.get(items.size() - 1).getId() +1;
+		}
 		pr.save(photo);
 		
 		Assert.isTrue(nextId == pr.save(photo).getId(), "Save");
